@@ -9,6 +9,7 @@ Dotenv::createImmutable(__DIR__ . '/../..')->load();
 
 $config = require __DIR__ . '/../../config/app.php';
 $config['assets'] = require __DIR__ . '/../../config/assets.php';
+$config['buttons'] = require __DIR__ . '/../../config/buttons.php';
 $config['components'] = require __DIR__ . '/../../config/components.php';
 $config['middlewares'] = require __DIR__ . '/../../config/middlewares.php';
 
