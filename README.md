@@ -20,7 +20,7 @@
 // config/routes.php
 
 return [
-    'main',
+    'main', // файл main.php
     'foo/bar/baz', // папка foo, подпапка bar и файл с роутами baz.php
 ];
 ```
