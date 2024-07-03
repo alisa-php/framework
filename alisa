@@ -10,6 +10,13 @@ require __DIR__ . '/vendor/autoload.php';
 Dotenv::createImmutable(__DIR__)->load();
 
 switch ($argv[1] ?? null) {
+    case 'serve':
+        $port = $argv[2] ?? 8000;
+
+        echo shell_exec("php -S localhost:{$port} -t public");
+
+        break;
+
     case 'migrate:up':
         Migrator::up();
 
@@ -103,10 +110,18 @@ switch ($argv[1] ?? null) {
     case '--help':
     case '-h':
     default:
-        echo "Доступные команды:" . PHP_EOL;
+        echo "----------------------" . PHP_EOL;
+        echo "| Доступные команды: |" . PHP_EOL;
+        echo "----------------------" . PHP_EOL;
+        echo "  [Сервер]" . PHP_EOL;
+        echo "      - php alisa serve <port?> .................. Запустить сервер" . PHP_EOL;
+        echo "  [Создать]" . PHP_EOL;
+        echo "      - php alisa make:component <name> .......... Создать компонент" . PHP_EOL;
+        echo "      - php alisa make:controller <name> ......... Создать контроллер" . PHP_EOL;
+        echo "      - php alisa make:middleware <name> ......... Создать мидлварь" . PHP_EOL;
         echo "  [Миграции]" . PHP_EOL;
-        echo "      - php alisa migrate:up ......... Накатить миграции;" . PHP_EOL;
-        echo "      - php alisa migrate:down ....... Откатить миграции;" . PHP_EOL;
-        echo "      - php alisa migrate:fresh ...... Перекатить все таблицы;" . PHP_EOL;
+        echo "      - php alisa migrate:up ..................... Накатить миграции" . PHP_EOL;
+        echo "      - php alisa migrate:down ................... Откатить миграции" . PHP_EOL;
+        echo "      - php alisa migrate:fresh .................. Перекатить все таблицы" . PHP_EOL;
         break;
 }
