@@ -106,6 +106,28 @@ switch ($argv[1] ?? null) {
 
         break;
 
+    case 'make:migration':
+        if (!isset($argv[2])) {
+            die('[Ошибка] Укажите название таблицы: php alisa make:migration <table>.');
+        }
+
+        $table = $argv[2];
+        $path = project_path('database/migrations/' . time() . '-table-' . $table . '.php');
+
+        if (file_exists($path)) {
+            die('[Ошибка] Миграция уже существует: ' . $path . '" ');
+        }
+
+        $stub = file_get_contents(project_path('framework/stubs/migration.stub'));
+
+        $stub = str_replace('%table%', $table, $stub);
+
+        file_put_contents($path, $stub);
+
+        echo '[OK] Миграция создана: ' . $path;
+
+        break;
+
     case 'help':
     case '--help':
     case '-h':
@@ -119,6 +141,7 @@ switch ($argv[1] ?? null) {
         echo "      - php alisa make:component <name> .......... Создать компонент" . PHP_EOL;
         echo "      - php alisa make:controller <name> ......... Создать контроллер" . PHP_EOL;
         echo "      - php alisa make:middleware <name> ......... Создать мидлварь" . PHP_EOL;
+        echo "      - php alisa make:migration <table> ......... Создать миграцию" . PHP_EOL;
         echo "  [Миграции]" . PHP_EOL;
         echo "      - php alisa migrate:up ..................... Накатить миграции" . PHP_EOL;
         echo "      - php alisa migrate:down ................... Откатить миграции" . PHP_EOL;
