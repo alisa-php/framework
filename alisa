@@ -1,0 +1,46 @@
+#!/usr/bin/php
+
+<?php
+
+use Dotenv\Dotenv;
+use Framework\Database\Migrator;
+
+require __DIR__ . '/vendor/autoload.php';
+
+Dotenv::createImmutable(__DIR__)->load();
+
+switch ($argv[1] ?? null) {
+    case 'migrate:up':
+        Migrator::up();
+
+        break;
+
+    case 'migrate:down':
+        $confirm = readline('(!) Действительно удалить все таблицы? [y/N]: ');
+
+        if ($confirm && strtolower($confirm) === 'y') {
+            Migrator::down();
+        }
+
+        break;
+
+    case 'migrate:fresh':
+        $confirm = readline('Вы уверены? [y/N]: ');
+
+        if ($confirm && strtolower($confirm) === 'y') {
+            Migrator::fresh();
+        }
+
+        break;
+
+    case 'help':
+    case '--help':
+    case '-h':
+    default:
+        echo "Доступные команды:" . PHP_EOL;
+        echo "  [Миграции]" . PHP_EOL;
+        echo "      - php alisa migrate:up ......... Накатить миграции;" . PHP_EOL;
+        echo "      - php alisa migrate:down ....... Откатить миграции;" . PHP_EOL;
+        echo "      - php alisa migrate:fresh ...... Перекатить все таблицы;" . PHP_EOL;
+        break;
+}
