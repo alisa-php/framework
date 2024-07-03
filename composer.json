@@ -1,7 +1,6 @@
 {
     "name": "alisa/framework",
     "description": "Фреймворк для разработки навыков Алисы.",
-    "version": "2.0.0",
     "type": "project",
     "keywords": [
         "yandex",
