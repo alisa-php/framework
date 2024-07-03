@@ -1,14 +1,22 @@
 <?php
 
 return [
+    /**
+     * Подключение по умолчанию.
+     *
+     * Используется для подключения к базе данных по умолчанию.
+     */
     'default' => env('DB_CONNECTION', 'mysql'),
 
+    /**
+     * Соединения.
+     */
     'connections' => [
         'sqlite' => [
             'driver' => 'sqlite',
             'prefix' => '',
             'url' => env('DATABASE_URL'),
-            'database' => project_path('database/'.env('DB_DATABASE').'.sqlite'),
+            'database' => project_path('database/'.env('DB_DATABASE', 'alisa').'.sqlite'),
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
         'mysql' => [
