@@ -33,6 +33,72 @@ switch ($argv[1] ?? null) {
 
         break;
 
+    case 'make:component':
+        if (!isset($argv[2])) {
+            die('[Ошибка] Укажите название компонента: php alisa make:component <name>.');
+        }
+
+        $name = $argv[2];
+        $path = project_path('app/Components/' . $name . '.php');
+
+        if (file_exists($path)) {
+            die('[Ошибка] Компонент уже существует: ' . $path . '" ');
+        }
+
+        $stub = file_get_contents(project_path('framework/stubs/component.stub'));
+
+        $stub = str_replace('%name%', $name, $stub);
+
+        file_put_contents($path, $stub);
+
+        echo '[OK] Компонент создан: ' . $path;
+
+        break;
+
+    case 'make:controller':
+        if (!isset($argv[2])) {
+            die('[Ошибка] Укажите название контролера: php alisa make:controller <name>.');
+        }
+
+        $name = $argv[2];
+        $path = project_path('app/Controllers/' . $name . '.php');
+
+        if (file_exists($path)) {
+            die('[Ошибка] Контроллер уже существует: ' . $path . '" ');
+        }
+
+        $stub = file_get_contents(project_path('framework/stubs/controller.stub'));
+
+        $stub = str_replace('%name%', $name, $stub);
+
+        file_put_contents($path, $stub);
+
+        echo '[OK] Контроллер создан: ' . $path;
+
+        break;
+
+    case 'make:middleware':
+        if (!isset($argv[2])) {
+            die('[Ошибка] Укажите название мидлвари: php alisa make:middleware <name>.');
+        }
+
+        $name = $argv[2];
+        $path = project_path('app/Middlewares/' . $name . '.php');
+
+        if (file_exists($path)) {
+            die('[Ошибка] Мидлваря уже существует: ' . $path . '" ');
+        }
+
+        $stub = file_get_contents(project_path('framework/stubs/middleware.stub'));
+
+        $stub = str_replace('%name%', $name, $stub);
+
+        file_put_contents($path, $stub);
+
+        echo '[OK] Мидлваря создана: ' . $path;
+
+        break;
+
     case 'help':
     case '--help':
     case '-h':
