@@ -5,7 +5,7 @@ namespace App\Middlewares;
 use Alisa\Context;
 use FilesystemIterator;
 
-class LoggerMiddleware
+class RequestToLogMiddleware
 {
     public function __invoke(Context $context, $next)
     {

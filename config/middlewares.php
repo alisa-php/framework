@@ -7,5 +7,5 @@
  * как он будет обработан в обработчике.
  */
 return [
-    \App\Middlewares\LoggerMiddleware::class,
+    \App\Middlewares\RequestToLogMiddleware::class,
 ];
