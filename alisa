@@ -13,7 +13,10 @@ switch ($argv[1] ?? null) {
     case 'serve':
         $port = $argv[2] ?? 8000;
 
-        echo shell_exec("php -S localhost:{$port} -t public");
+        echo '[>] Вебхук: http://localhost:' . $port . '/webhook.php' . PHP_EOL;
+        echo '[!] Необходимо дополнительно запустить тунель, если хотите тестировать в Диалогах.' . PHP_EOL . PHP_EOL;
+
+        shell_exec("php -S localhost:{$port} -t public");
 
         break;
 
@@ -42,14 +45,14 @@ switch ($argv[1] ?? null) {
 
     case 'make:component':
         if (!isset($argv[2])) {
-            die('[Ошибка] Укажите название компонента: php alisa make:component <name>.');
+            die('[!] Укажите название компонента: php alisa make:component <name>.');
         }
 
         $name = $argv[2];
         $path = project_path('app/Components/' . $name . '.php');
 
         if (file_exists($path)) {
-            die('[Ошибка] Компонент уже существует: ' . $path . '" ');
+            die('[!] Компонент уже существует: ' . $path . '" ');
         }
 
         $stub = file_get_contents(project_path('framework/stubs/component.stub'));
@@ -64,14 +67,14 @@ switch ($argv[1] ?? null) {
 
     case 'make:controller':
         if (!isset($argv[2])) {
-            die('[Ошибка] Укажите название контролера: php alisa make:controller <name>.');
+            die('[!] Укажите название контролера: php alisa make:controller <name>.');
         }
 
         $name = $argv[2];
         $path = project_path('app/Controllers/' . $name . '.php');
 
         if (file_exists($path)) {
-            die('[Ошибка] Контроллер уже существует: ' . $path . '" ');
+            die('[!] Контроллер уже существует: ' . $path . '" ');
         }
 
         $stub = file_get_contents(project_path('framework/stubs/controller.stub'));
@@ -86,14 +89,14 @@ switch ($argv[1] ?? null) {
 
     case 'make:middleware':
         if (!isset($argv[2])) {
-            die('[Ошибка] Укажите название мидлвари: php alisa make:middleware <name>.');
+            die('[!] Укажите название мидлвари: php alisa make:middleware <name>.');
         }
 
         $name = $argv[2];
         $path = project_path('app/Middlewares/' . $name . '.php');
 
         if (file_exists($path)) {
-            die('[Ошибка] Мидлваря уже существует: ' . $path . '" ');
+            die('[!] Мидлваря уже существует: ' . $path . '" ');
         }
 
         $stub = file_get_contents(project_path('framework/stubs/middleware.stub'));
@@ -108,14 +111,14 @@ switch ($argv[1] ?? null) {
 
     case 'make:migration':
         if (!isset($argv[2])) {
-            die('[Ошибка] Укажите название таблицы: php alisa make:migration <table>.');
+            die('[!] Укажите название таблицы: php alisa make:migration <table>.');
         }
 
         $table = $argv[2];
         $path = project_path('database/migrations/' . time() . '-table-' . $table . '.php');
 
         if (file_exists($path)) {
-            die('[Ошибка] Миграция уже существует: ' . $path . '" ');
+            die('[!] Миграция уже существует: ' . $path . '" ');
         }
 
         $stub = file_get_contents(project_path('framework/stubs/migration.stub'));
@@ -132,9 +135,7 @@ switch ($argv[1] ?? null) {
     case '--help':
     case '-h':
     default:
-        echo "----------------------" . PHP_EOL;
-        echo "| Доступные команды: |" . PHP_EOL;
-        echo "----------------------" . PHP_EOL;
+        echo "Доступные команды:" . PHP_EOL;
         echo "  [Сервер]" . PHP_EOL;
         echo "      - php alisa serve <port?> .................. Запустить сервер" . PHP_EOL;
         echo "  [Создать]" . PHP_EOL;

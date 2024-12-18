@@ -6,12 +6,13 @@ return [
      *
      * Используется для подключения к базе данных по умолчанию.
      */
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'sqlite'),
 
     /**
      * Соединения.
      */
     'connections' => [
+
         'sqlite' => [
             'driver' => 'sqlite',
             'prefix' => '',
@@ -19,6 +20,7 @@ return [
             'database' => project_path('database/'.env('DB_DATABASE', 'alisa').'.sqlite'),
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
@@ -33,6 +35,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'strict' => false,
         ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -45,5 +48,6 @@ return [
             'prefix_indexes' => true,
             'charset' => 'utf8',
         ],
+
     ],
 ];

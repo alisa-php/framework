@@ -6,7 +6,7 @@ use Alisa\Context;
 
 class %name%
 {
-    public function __invoke(Context $context)
+    public function __invoke(Context $ctx)
     {
         //
     }

@@ -7,36 +7,78 @@ use Throwable;
 
 class MainController
 {
-    public function start(Context $context)
+    public function onStart(Context $ctx)
     {
         //
     }
 
-    public function help(Context $context)
+    public function onHelp(Context $ctx)
     {
         //
     }
 
-    public function features(Context $context)
+    public function onWhatCanYouDo(Context $ctx)
     {
         //
     }
 
-    public function fallback(Context $context)
+    public function onFallback(Context $ctx)
     {
         //
     }
 
-    public function exception(Context $context, Throwable $exception)
+    public function onRepeat(Context $ctx)
     {
-        $dir = storage_path('logs/exceptions/' . date('Y-m-d'));
+        //
+    }
 
-        if (!file_exists($dir)) {
-            mkdir($dir, 0776, true);
-        }
+    public function onError(Context $ctx, Throwable $th)
+    {
+        //
+    }
 
-        $file = $dir . '/exceptions.log';
+    public function onAny(Context $ctx)
+    {
+        //
+    }
 
-        file_put_contents($file, '[' . date('d.m.Y H:i:s') . "] \n[context] -> " . $context . "\n[exception] -> " . $exception . "\n\n", FILE_APPEND);
+    public function onCommand(Context $ctx)
+    {
+        //
+    }
+
+    public function onIntent(Context $ctx)
+    {
+        //
+    }
+
+    public function onAction(Context $ctx)
+    {
+        //
+    }
+
+    public function onConfirm(Context $ctx)
+    {
+        //
+    }
+
+    public function onReject(Context $ctx)
+    {
+        //
+    }
+
+    public function onDangerous(Context $ctx)
+    {
+        //
+    }
+
+    public function onPurchaseConfirmation(Context $ctx)
+    {
+        //
+    }
+
+    public function onShowPull(Context $ctx)
+    {
+        //
     }
 }

@@ -7,6 +7,6 @@
  */
 return [
     \App\Components\VersionComponent::class => [
-        '1.0.0'
+        'version' => '1.0.0',
     ],
 ];

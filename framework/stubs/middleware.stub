@@ -3,11 +3,12 @@
 namespace App\Middlewares;
 
 use Alisa\Context;
+use Closure;
 
 class %name%
 {
-    public function __invoke(Context $context, $next)
+    public function __invoke(Context $ctx, Closure $next)
     {
-        $next($context);
+        $next($ctx);
     }
 }

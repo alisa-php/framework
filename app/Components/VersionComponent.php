@@ -7,10 +7,10 @@ use Alisa\Context;
 
 class VersionComponent extends Component
 {
-    public function register(string $version = null)
+    public function register()
     {
-        $this->alisa->onCommand(['версия', 'version'], function (Context $context) use ($version) {
-            $context->reply("Версия навыка: {$version}");
+        $this->alisa->onCommand(['версия', 'version'], function (Context $ctx) {
+            $ctx->reply("Версия навыка: {$this->args['version']}");
         });
     }
 }

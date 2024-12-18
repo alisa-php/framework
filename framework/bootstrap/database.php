@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
