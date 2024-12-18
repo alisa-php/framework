@@ -21,4 +21,4 @@ alisa()->onAudioPlayerPlaybackStopped([\App\Controllers\AudioPlayerController::c
 alisa()->onAudioPlayerPlaybackFailed([\App\Controllers\AudioPlayerController::class, 'onPlaybackFailed']);
 
 // Exception
-alisa()->onError(\Framework\Controllers\ExceptionLogController::class);
+alisa()->onError(\Framework\Controllers\ErrorController::class);
