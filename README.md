@@ -1,106 +1,33 @@
-# Framework
+# Фреймворк
 
-Это фреймворк для разработки навыков голосового помощника Алисы.
+Это базовый фреймворк построенный на [Alisa](https://github/alisa-php/alisa) для быстрого старта разработки навыка для Алисы.
 
-Фреймворк содержит базовую структуру проекта для быстрого старта, а также работает с базой данных Eloquent из коробки.
+## Особенности
 
-# Описание
+Из коробки поддерживает работу с базой данных, логирование запросов и многое другое. Подход к разработке вдохновлен Laravel, но более упрощенный.
 
-## Routes
+## Установка
 
-Роуты позволяют разруливать входящие запросы от Диалогов.
-
-Находятся в папке `routes`.
-
-Регистрация дополнительных файлов с роутами происходит в файле `config/routes.php`.
-
-> [!NOTE]
-> При регистрации файлов помните о приоритетах событий.
-
-```php
-// config/routes.php
-
-return [
-    'main', // файл main.php
-    'foo/bar/baz', // папка foo, подпапка bar и файл с роутами baz.php
-];
+```bash
+composer create-project alisa/framework
 ```
 
-```php
-// routes/main.php
+## Команды
 
-/** @var \Alisa\Alisa $alisa */
+Вы можете воспользоваться волшебной командой `php alisa <command>` для организации проекта.
 
-$alisa->onStart([\App\Controllers\HamsterController::class, 'start']);
-$alisa->onAny([\App\Controllers\HamsterController::class, 'any']);
+Ниже представлен список доступных команд:
+
+```bash
+  [Сервер]
+      - php alisa serve <port?> .................. Запустить сервер
+  [Создать]
+      - php alisa make:component <name> .......... Создать компонент
+      - php alisa make:controller <name> ......... Создать контроллер
+      - php alisa make:middleware <name> ......... Создать мидлварь
+      - php alisa make:migration <table> ......... Создать миграцию
+  [Миграции]
+      - php alisa migrate:up ..................... Накатить миграции
+      - php alisa migrate:down ................... Откатить миграции
+      - php alisa migrate:fresh .................. Перекатить все таблицы
 ```
-
-## Controllers
-
-Котнроллеры - это обработчики входящий запросов.
-
-Их можно объявить в виде функции или класса.
-
-Классы находятся по пути `app/Controllers`, функции объявляются внутри `routes`.
-
-```php
-// routes/main.php
-
-$alisa->onStart([\App\Controllers\HamsterController::class, 'start']);
-
-...
-
-// app/Controllers/HamsterController
-
-namespace App\Controllers;
-
-use Alisa\Context;
-
-class HamsterController
-{
-    public function start(Context $context)
-    {
-        //
-    }
-}
-```
-
-```php
-// routes/main.php
-
-$alisa->onStart(function (Context $context) {
-    //
-});
-```
-
-## Middlewares
-
-Находятся в папке `app/Middlewares`, могут быть в виде классов и функций.
-
-```php
-namespace App\Middlewares;
-
-use Alisa\Context;
-
-class LoggerMiddleware
-{
-    public function __invoke(Context $context, $next)
-    {
-        $next($context);
-    }
-}
-```
-
-```php
-$alisa->onStart([\App\Controllers\HamsterController::class, 'start'])->middleware(LoggerMiddleware::class);
-```
-
-```php
-$alisa
-    ->onCommand('foo')
-    ->middleware(function (Context $context, $next) {
-        $next($context);
-    });
-```
-
-Readme WIP
